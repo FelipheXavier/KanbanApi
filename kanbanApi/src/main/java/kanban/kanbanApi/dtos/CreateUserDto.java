@@ -1,4 +1,8 @@
 package kanban.kanbanApi.dtos;
 
-public record CreateUserDto(String username,String email,String password) {
+import kanban.kanbanApi.entities.Board;
+
+import java.util.List;
+
+public record CreateUserDto(String username, String email, String password) {
 }
