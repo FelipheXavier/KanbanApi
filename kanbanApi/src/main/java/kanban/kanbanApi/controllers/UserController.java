@@ -1,13 +1,14 @@
 package kanban.kanbanApi.controllers;
 
+import kanban.kanbanApi.dtos.CreateBoardDto;
 import kanban.kanbanApi.dtos.CreateUserDto;
 import kanban.kanbanApi.dtos.UpdateUserDto;
 import kanban.kanbanApi.entities.User;
 import kanban.kanbanApi.services.UserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody CreateUserDto body){
@@ -50,4 +52,7 @@ public class UserController {
         userService.updateUserById(id ,body);
         return ResponseEntity.noContent().build();
     }
+
+
 }
+

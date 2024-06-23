@@ -1,20 +1,32 @@
 package kanban.kanbanApi.services;
 
+import kanban.kanbanApi.dtos.CreateBoardDto;
 import kanban.kanbanApi.dtos.CreateUserDto;
 import kanban.kanbanApi.dtos.UpdateUserDto;
+import kanban.kanbanApi.entities.Board;
 import kanban.kanbanApi.entities.User;
+import kanban.kanbanApi.exceptions.TryingToCreateMoreThan5Boards;
+import kanban.kanbanApi.repositories.BoardRepository;
 import kanban.kanbanApi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class UserService {
-    @Autowired
     private UserRepository userRepository;
+    private BoardRepository boardRepository;
+
+    public UserService(BoardRepository boardRepository, UserRepository userRepository) {
+        this.boardRepository = boardRepository;
+        this.userRepository = userRepository;
+    }
 
     public UUID createNewUser(CreateUserDto body){
         var userEntity = new User(UUID.randomUUID(),body.email(),body.username(),body.password());
@@ -51,4 +63,6 @@ public class UserService {
             userRepository.save(user);
         }
     }
+
+
 }
