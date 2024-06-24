@@ -15,4 +15,9 @@ public class RestExceptionHandle {
     private ResponseEntity<String> TryingToCreateMoreThan5boards(TryingToCreateMoreThan5Boards exception){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You Can't to create more boards");
     }
+    @ExceptionHandler(BoardNotFoundException.class)
+    private ResponseEntity<String> BoardNotFound(BoardNotFoundException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Board not found");
+    }
+
 }

@@ -1,6 +1,7 @@
 package kanban.kanbanApi.controllers;
 
 import kanban.kanbanApi.dtos.CreateBoardDto;
+import kanban.kanbanApi.dtos.UpdateBoardDto;
 import kanban.kanbanApi.entities.User;
 import kanban.kanbanApi.exceptions.TryingToCreateMoreThan5Boards;
 import kanban.kanbanApi.services.BoardService;
@@ -32,5 +33,18 @@ public class BoardController {
                                             @RequestBody CreateBoardDto body) {
         boardService.createBoard(id,body);
         return ResponseEntity.status(201).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable String id){
+        boardService.deleteBoard(id);
+        return ResponseEntity.status(200).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateBoard(@PathVariable String id,
+                                            @RequestBody UpdateBoardDto body){
+        boardService.updateBoard(id,body);
+        return ResponseEntity.status(200).build();
     }
 }
