@@ -1,6 +1,7 @@
 package kanban.kanbanApi.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class Board {
     @JsonBackReference
     private User user;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "board")
     private List<Card> cards;
 

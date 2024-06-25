@@ -19,5 +19,12 @@ public class RestExceptionHandle {
     private ResponseEntity<String> BoardNotFound(BoardNotFoundException exception){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Board not found");
     }
-
+    @ExceptionHandler(CardNotFoundException.class)
+    private ResponseEntity<String> CardNotFound(CardNotFoundException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Card not found");
+    }
+    @ExceptionHandler(TryingToCreateMoreThan5Cards.class)
+    private ResponseEntity<String> TryingToCreateMoreThan5Cards(TryingToCreateMoreThan5Cards exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You Can't to create more cards");
+    }
 }
